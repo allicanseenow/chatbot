@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 module.exports = {
-  entry: './js/app.js',
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'app.bundle.js'
@@ -20,5 +20,9 @@ module.exports = {
   stats: {
     colors: true
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  node: {
+    fs: 'empty',
+    net: 'empty'
+  }
 };
