@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "babel": "babel --presets es2015 js/app.js -o build/app.bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack",
+    "start": "http-server"
   },
   "author": "Trung",
   "license": "ISC",
@@ -12,9 +15,11 @@
     "express": "^4.16.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
+    "http-server": "^0.11.1",
     "webpack": "^3.10.0"
   }
 }
