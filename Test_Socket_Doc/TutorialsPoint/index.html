@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello world</title>
+    </head>
+    <script src = "/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('newclientconnect',function(data) {
+        console.log("DATA CLIENT IS ", data);
+        document.body.innerHTML = data.description;
+        // document.write();
+      });
+    </script>
+    <script>
+      var socket = io('/np');
+      socket.on('hi',function(data) {
+        console.log("DATA in client IS ", data)
+        document.body.innerHTML = data;
+      });
+    </script>
+    <body>Hello world</body>
+</html>

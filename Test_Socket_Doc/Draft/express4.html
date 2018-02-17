@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://localhost:8080');
+  socket.on('server', function (msg, id) {
+    console.log(`Get a msg from the server: "${msg}", my ID is: ${id}`);
+    socket.emit('client', 'Hello from the client!!');
+  });
+</script>
+<script>
+    var chat = io.connect('http://localhost:8080/chat'),
+      news = io.connect('http://localhost:8080/news');
+
+    chat.on('connect', () => {
+      chat.emit('msg', { msg: 'Client says HI'});
+    });
+
+    news.on('news', () => {
+      news.emit('item', {news: 'item'});
+    });
+</script>
+</body>
+</html>

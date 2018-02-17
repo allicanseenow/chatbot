@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello world</title>
+    </head>
+    <script src = "/socket.io/socket.io.js"></script>
+
+    <script>
+      var socket = io();
+      socket.on('connectToRoom',function(data) {
+        document.body.innerHTML = data.data;
+        console.log("ROOM IS ", data.room);
+      });
+
+      socket.on('leave', (data) => console.log("LEAVE data is: ", data))
+    </script>
+    <body></body>
+</html>
