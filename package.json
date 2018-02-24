@@ -4,13 +4,15 @@
   "description": "First chat bot made by Amakawa",
   "main": "index.js",
   "scripts": {
-    "babel": "babel --presets es2015 js/app.js -o build/app.bundle.js",
+    "babel-run": "babel --presets es2015 js/app.js -o build/app.bundle.js",
     "babel-test-build": "babel --presets es2015 index.js -o build/test/index.js",
     "babel-test-run": "node build/test/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack",
     "start": "http-server",
-    "start-babel": ""
+    "start-babel": "",
+    "babel-socket": "babel --presets es2015 Test_Socket_Doc/Socket.IO_Real-time_Book/ --out-dir build/socket/",
+    "babel-socket-run": "node build/socket/app.js"
   },
   "author": "Trung",
   "license": "ISC",
@@ -18,7 +20,9 @@
     "debug": "^3.1.0",
     "express": "^4.16.2",
     "http-server": "^0.11.1",
+    "jade": "^1.11.0",
     "nodemon": "^1.14.12",
+    "npx": "^9.7.1",
     "socket.io": "^2.0.4",
     "webpack": "^3.10.0"
   },
