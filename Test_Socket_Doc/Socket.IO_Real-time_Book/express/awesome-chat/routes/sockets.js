@@ -3,36 +3,33 @@ var io = require('socket.io');
 exports.initialize = (server) => {
   console.log("LISTENINGNGN")
   io = io.listen(server);
-  // io.sockets.on === io.on
-  io.on('connection', (socket) => {
-    // socket.send(JSON.stringify({
-    //   type: 'serverMessage',
-    //   message: 'Welcome to the chat bot!',
-    // }));
-    // When user sends a message, server sends the response so the chat screen of each user displays the message
-    socket.on('message', (message) => {
-      message = JSON.parse(message);
-      //
-      if (message.type === 'userMessage') {
-        if (socket.set_name) message.username = socket.set_name;
-        console.log("SOCKET SET_name", socket.set_name);
-        socket.broadcast.send(JSON.stringify(message));
-        message.type = 'myMessage';
-        socket.send(JSON.stringify(message));
-      }
+
+  let chatInfra = io.of('/chat_infra')
+    .on('connection', (socket) => {
+      socket.on('set_name', (data) => {
+        socket.emit('name_been_set', data);
+        // Tell the server to say welcome to THIS USER ONLY
+        socket.send(JSON.stringify({
+          type: 'serverMessage',
+          message: 'Welcome to the chat room!',
+        }));
+        // Signify all other users EXCEPT THIS ONE that there is a new user
+        socket.broadcast.emit('user_entered', data);
+      });
     });
-    // Set name
-    socket.on('set_name', (data) => {
-      // socket.set() has been DEPRECATED
-      // socket.set('nickname', data.name, function(){
-      //   socket.emit('name_set', data);
-      //   socket.send(JSON.stringify({type:'serverMessage',
-      //     message: 'Welcome to the most interesting chat room on earth!'}));
-      // });
-      socket.set_name = data.name
-      socket.emit('name_been_set', data);
-      socket.send(JSON.stringify({ type: 'serverMessage', message: 'Welcome to the chat bot!' }))
-      socket.broadcast.emit('user_entered', data);
-    })
-  })
+  let chatCom = io.of('/chat_com')
+    .on('connection', (socket) => {
+      socket.on('message', (message) =>{
+        message = JSON.parse(message);
+        console.log("MEssage in chatCom", message)
+        if (message.type === 'userMessage') {
+          if (message.name) {
+            message.username = message.name;
+            socket.broadcast.send(JSON.stringify(message));
+            message.type = 'myMessage';
+            socket.send(JSON.stringify(message));
+          }
+        }
+      });
+    });
 }
