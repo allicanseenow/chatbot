@@ -21,10 +21,12 @@ socket.on('name_been_set', (data) => {
       $('#messages').append('<div class="' + data.type + '">' + data.message + '</div>');
     }
   });
+  socket.on('user_entered', (user) => {
+    $('#messages').append('<div class="systemMessage">' + user.name + ' has joined the room.' + '</div>');
+  });
 });
 
 $(function(){
-
   $('#setname').click(() => {
     socket.emit('set_name', {name: $('#nickname').val()});
   });

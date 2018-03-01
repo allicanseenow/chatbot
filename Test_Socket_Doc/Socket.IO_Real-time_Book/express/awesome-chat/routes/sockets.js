@@ -32,6 +32,7 @@ exports.initialize = (server) => {
       socket.set_name = data.name
       socket.emit('name_been_set', data);
       socket.send(JSON.stringify({ type: 'serverMessage', message: 'Welcome to the chat bot!' }))
+      socket.broadcast.emit('user_entered', data);
     })
   })
 }
