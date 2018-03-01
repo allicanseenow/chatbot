@@ -1,7 +1,6 @@
 var io = require('socket.io');
 
 exports.initialize = (server) => {
-  console.log("LISTENINGNGN")
   io = io.listen(server);
   // io.sockets.on === io.on
   io.on('connection', (socket) => {
