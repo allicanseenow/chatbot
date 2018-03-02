@@ -4,6 +4,7 @@
   "description": "First chat bot made by Amakawa",
   "main": "index.js",
   "scripts": {
+    "awesome": "nodemon Test_Socket_Doc/Socket.IO_Real-time_Book/express/awesome-chat/app.js",
     "babel-run": "babel --presets es2015 js/app.js -o build/app.bundle.js",
     "babel-test-build": "babel --presets es2015 index.js -o build/test/index.js",
     "babel-test-run": "node build/test/index.js",
