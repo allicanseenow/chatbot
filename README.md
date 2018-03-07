@@ -5,4 +5,4 @@ However, all the bugs presented in the book should be cleared away and the versi
 
 Run the app by:
 
-`nodemon Test_Socket_Doc/Socket.IO_Real-time_Book/express/awesome-chat/app.js`
+`npm run awesome`
