@@ -11,6 +11,10 @@ exports.index = function(req, res){
 };
 
 exports.chatRoom = function(req, res) {
-  res.render('chatroom')
+  res.render('chatroom');
 };
+
+exports.rooms = function(req, res) {
+  res.render('rooms', { title: 'Express Chat' });
+}
 

@@ -2,7 +2,10 @@ doctype html
 html
   block head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    // Put css in a javascript, then transpile it with babel
+    script(type='text/javascript', src='/transpiled_javascripts/vendors.js')
+    script(type='text/javascript', src='/transpiled_javascripts/css_compiled.js')
+    //link(rel='stylesheet', href='/stylesheets/style.css')
   body
     header#banner
       h1 Awesome Chat

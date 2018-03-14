@@ -13,11 +13,12 @@ console.log('Fuck---------------         --------------              -----------
 module.exports = {
   entry: {
     rooms: './public/javascripts/rooms.js',
-    chat: './public/javascripts/chat.js'
+    chat: './public/javascripts/chat.js',
+    css_compiled: './public/stylesheets/css_compiled'
   },
   resolve: {
     // you can now require('file') instead of require('file.js')
-    extensions: ['.js', '.json']
+    extensions: ['.js', '.json', '.css']
   },
   output: {
     // chunkFilename: '[name].bundle.js',
@@ -31,6 +32,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
+        include: path.resolve(__dirname, 'public', 'stylesheets'),
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
@@ -64,10 +66,27 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          // test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all"
+        }
+      }
+    }
+  },
   plugins: [
     new CleanwebpackPlugin([transpiledPath]),
+    // new webpack.optimize.SplitChunksPlugin({
+    //   // name: 'common' // Specify the common bundle's name.
+    //
+    // }),
     // new ExtractTextPlugin('styles.css')
     new UglifyJsPlugin({
+      include: /\/includes/,
+      exclude: /\/excludes/,
       uglifyOptions: {
         compress: {
           warnings: true,

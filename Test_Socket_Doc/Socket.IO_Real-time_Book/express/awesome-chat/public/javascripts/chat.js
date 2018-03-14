@@ -16,7 +16,6 @@ if (roomName) {
     chatInfra.emit('join_room', { roomName: roomName, userName: data.name });
     // Signify other users EXCEPT THIS ONE that there is a new user having entered the chat room
     chatInfra.on('user_entered', (data) => {
-      console.log("USER ENTERED In client ", data)
       $('#messages').append('<div class="systemMessage">' + data.userName + ' has joined the room ' + data.roomName + '.</div>');
     });
     // Welcome ONLY THIS new user to the chat box
@@ -27,7 +26,6 @@ if (roomName) {
     // Receive the message by ANY USER
     chatCom.on('message', (message) => {
       let data = JSON.parse(message);
-      console.log("Inside chatCOm message event", data);
       if (data && data.username) {
         $('#messages').append('<div class="' + data.type + '"><span class="name">' + data.username + ':</span> ' + data.message + '</div>');
       }
