@@ -15,6 +15,6 @@ Run the app by:
 
 ```
 npm run webpack
-npm run awesome
+nodemon app.js
 ```
 
