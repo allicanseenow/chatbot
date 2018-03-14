@@ -13,6 +13,8 @@ And run the command:
 
 Run the app by:
 
-`npm run webpack`
-`npm run awesome`
+```
+npm run webpack
+npm run awesome
+```
 
