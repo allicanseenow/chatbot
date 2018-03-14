@@ -1,5 +1,5 @@
-var io = require('socket.io');
-var _ = require('lodash');
+const io = require('socket.io');
+const _ = require('lodash');
 const util = require('util')
 
 let roomList = {};
