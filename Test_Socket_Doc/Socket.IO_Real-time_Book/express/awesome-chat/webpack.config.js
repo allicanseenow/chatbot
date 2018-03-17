@@ -14,7 +14,8 @@ module.exports = {
   entry: {
     rooms: './public/javascripts/rooms.js',
     chat: './public/javascripts/chat.js',
-    css_compiled: './public/stylesheets/css_compiled'
+    css_compiled: './public/stylesheets/css_compiled',
+    landing: './public/javascripts/landing.js'
   },
   resolve: {
     // you can now require('file') instead of require('file.js')

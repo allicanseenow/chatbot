@@ -1,6 +1,11 @@
 extends layout
 
+block append head
+  script(type='text/javascript', src='/transpiled_javascripts/landing.js')
+
 block content
   section#welcome
     div Welcome
-    a#startchat(type='button', class='btn', href='/rooms') Start now
+    span
+      input#nickname(type='text', placeholder='Enter a nickname')
+      a#startchat(class='btn') Login

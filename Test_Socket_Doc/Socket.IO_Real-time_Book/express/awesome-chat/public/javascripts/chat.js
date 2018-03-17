@@ -11,9 +11,9 @@ let roomName = (
 
 // If there is a room name specified
 if (roomName) {
+  chatInfra.emit('join_room', { roomName: roomName });
   // Handler after user has entered the name to establish a session
   chatInfra.on('name_been_set', (data) => {
-    chatInfra.emit('join_room', { roomName: roomName, userName: data.name });
     // Signify other users EXCEPT THIS ONE that there is a new user having entered the chat room
     chatInfra.on('user_entered', (data) => {
       $('#messages').append('<div class="systemMessage">' + data.userName + ' has joined the room ' + data.roomName + '.</div>');
